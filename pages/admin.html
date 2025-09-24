@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenGrow Organic Fertilizers - Admin Dashboard</title>
+</head>
+<body>
+<section class="dashboard" id="adminDashboard">
+    <div class="container">
+        <div class="dashboard-header">
+            <h2>Admin Dashboard</h2>
+            <div class="admin-controls">
+                <button class="btn btn-primary" id="addProductBtn">Add New Product</button>
+                <button class="btn btn-secondary" id="generateReportBtn">Generate Report</button>
+            </div>
+        </div>
+        
+        <div class="tabs">
+            <div class="tab active" data-tab="products">Products</div>
+            <div class="tab" data-tab="orders">Orders</div>
+            <div class="tab" data-tab="users">Users</div>
+            <div class="tab" data-tab="analytics">Analytics</div>
+        </div>
+        
+        <div class="tab-content active" id="productsTab">
+            <h3>Product Management</h3>
+            <div class="admin-controls mb-3">
+                <input type="text" id="productSearch" placeholder="Search products..." class="form-control" title="Search products by name or description">
+                <select id="productCategoryFilter" title="Filter products by category">
+                    <option value="">All Categories</option>
+                    <option value="organic">Organic</option>
+                    <option value="inorganic">Inorganic</option>
+                    <option value="liquid">Liquid</option>
+                    <option value="granular">Granular</option>
+                </select>
+            </div>
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Price</th>
+                        <th>Stock</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="adminProductsTable">
+                    <!-- Products will be dynamically added here -->
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="tab-content" id="ordersTab">
+            <h3>Order Management</h3>
+            <div class="admin-controls mb-3">
+                <input type="text" id="orderSearch" placeholder="Search orders..." class="form-control" title="Search orders by customer name or order ID">
+                <select id="orderStatusFilter" title="Filter orders by status">
+                    <option value="">All Statuses</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Processing">Processing</option>
+                    <option value="Completed">Completed</option>
+                    <option value="Cancelled">Cancelled</option>
+                </select>
+            </div>
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Customer</th>
+                        <th>Date</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="adminOrdersTable">
+                    <!-- Orders will be dynamically added here -->
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="tab-content" id="usersTab">
+            <h3>User Management</h3>
+            <div class="admin-controls mb-3">
+                <input type="text" id="userSearch" placeholder="Search users..." class="form-control" title="Search users by name or email">
+                <select id="userTypeFilter" title="Filter users by type">
+                    <option value="">All Types</option>
+                    <option value="client">Client</option>
+                    <option value="admin">Admin</option>
+                </select>
+            </div>
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Type</th>
+                        <th>Registration Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="adminUsersTable">
+                    <!-- Users will be dynamically added here -->
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="tab-content" id="analyticsTab">
+            <h3>Business Analytics</h3>
+            <div class="analytics-grid">
+                <div class="analytics-card">
+                    <h4>Total Products</h4>
+                    <p id="totalProducts">0</p>
+                </div>
+                <div class="analytics-card">
+                    <h4>Total Orders</h4>
+                    <p id="totalOrders">0</p>
+                </div>
+                <div class="analytics-card">
+                    <h4>Total Users</h4>
+                    <p id="totalUsers">0</p>
+                </div>
+                <div class="analytics-card">
+                    <h4>Revenue</h4>
+                    <p id="totalRevenue">₨0.00</p>
+                </div>
+            </div>
+            <div class="chart-container">
+                <h4>Sales Overview</h4>
+                <div id="salesChart" class="chart-placeholder">
+                    <!-- Chart will be rendered here -->
+                    <p>Sales chart visualization would appear here</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

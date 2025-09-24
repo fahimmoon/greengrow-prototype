@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenGrow Organic Fertilizers - Modals</title>
+</head>
+<body>
+<!-- Login Modal -->
+<div class="modal" id="loginModal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>Login to Your Account</h2>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="loginEmail">Email</label>
+                <input type="email" id="loginEmail" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+                <label for="loginPassword">Password</label>
+                <input type="password" id="loginPassword" placeholder="Enter your password" required>
+            </div>
+            <div class="form-group">
+                <label for="userType">Login as:</label>
+                <select id="userType">
+                    <option value="client">Client</option>
+                    <option value="admin">Admin</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary full-width">Login</button>
+        </form>
+        <div class="form-switch">
+            Don't have an account? <a id="switchToRegister">Register here</a>
+        </div>
+    </div>
+</div>
+
+<!-- Register Modal -->
+<div class="modal" id="registerModal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>Create New Account</h2>
+        <form id="registerForm">
+            <div class="form-group">
+                <label for="registerName">Full Name</label>
+                <input type="text" id="registerName" placeholder="Enter your full name" required>
+            </div>
+            <div class="form-group">
+                <label for="registerEmail">Email</label>
+                <input type="email" id="registerEmail" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+                <label for="registerPassword">Password</label>
+                <input type="password" id="registerPassword" placeholder="Create a password" required>
+            </div>
+            <div class="form-group">
+                <label for="registerType">Register as:</label>
+                <select id="registerType">
+                    <option value="client">Client</option>
+                    <option value="admin">Admin</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary full-width">Register</button>
+        </form>
+        <div class="form-switch">
+            Already have an account? <a id="switchToLogin">Login here</a>
+        </div>
+    </div>
+</div>
+
+<!-- Cart Modal -->
+<div class="modal" id="cartModal">
+    <div class="modal-content cart-modal">
+        <span class="close-modal">&times;</span>
+        <h2>Your Shopping Cart</h2>
+        <div id="cartItems">
+            <!-- Cart items will be dynamically added here -->
+            <p class="empty-cart-message">Your cart is empty. Add some products!</p>
+        </div>
+        <div class="cart-total">
+            Total: ₨<span id="cartTotal">0.00</span>
+        </div>
+        <button class="btn btn-primary full-width" id="checkoutBtn">Proceed to Checkout</button>
+    </div>
+</div>
+
+<!-- Add/Edit Product Modal -->
+<div class="modal" id="productModal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2 id="productModalTitle">Add New Product</h2>
+        <form id="productForm">
+            <div class="form-group">
+                <label for="productName">Product Name</label>
+                <input type="text" id="productName" placeholder="Enter product name" required>
+            </div>
+            <div class="form-group">
+                <label for="productCategory">Category</label>
+                <select id="productCategory" required>
+                    <option value="">Select a category</option>
+                    <option value="organic">Organic</option>
+                    <option value="inorganic">Inorganic</option>
+                    <option value="liquid">Liquid</option>
+                    <option value="granular">Granular</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="productDescription">Description</label>
+                <textarea id="productDescription" placeholder="Enter product description" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="productPrice">Price (₨)</label>
+                <input type="number" id="productPrice" step="0.01" min="0" placeholder="0.00" required>
+            </div>
+            <div class="form-group">
+                <label for="productStock">Stock</label>
+                <input type="number" id="productStock" min="0" placeholder="Enter stock quantity" required>
+            </div>
+            <div class="form-group">
+                <label for="productImage">Product Image</label>
+                <input type="file" id="productImage" accept="image/*">
+                <div class="image-preview" id="imagePreview">
+                    <img id="previewImage" src="" alt="Preview">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary full-width">Save Product</button>
+        </form>
+    </div>
+</div>
+
+<!-- Order Details Modal -->
+<div class="modal" id="orderDetailsModal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>Order Details</h2>
+        <div id="orderDetailsContent">
+            <!-- Order details will be dynamically added here -->
+        </div>
+    </div>
+</div>
+</body>
+</html>

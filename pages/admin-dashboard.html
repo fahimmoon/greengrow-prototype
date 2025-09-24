@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="GreenGrow Admin Dashboard - Manage products, orders, and users">
+    <title>GreenGrow Admin Dashboard</title>
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <aside class="admin-sidebar">
+        <div class="logo">
+            <h1><i class="fas fa-seedling" title="GreenGrow Logo"></i> <span>GreenGrow Admin</span></h1>
+        </div>
+        <nav class="nav-links">
+            <div class="nav-item">
+                <a href="#" class="nav-link active" data-page="dashboard" title="Dashboard">
+                    <i class="fas fa-home" title="Dashboard"></i>
+                    <span>Dashboard</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="#" class="nav-link" data-page="products" title="Products">
+                    <i class="fas fa-box" title="Products"></i>
+                    <span>Products</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="#" class="nav-link" data-page="orders" title="Orders">
+                    <i class="fas fa-shopping-cart" title="Orders"></i>
+                    <span>Orders</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="#" class="nav-link" data-page="users" title="Users">
+                    <i class="fas fa-users" title="Users"></i>
+                    <span>Users</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="#" class="nav-link" data-page="analytics" title="Analytics">
+                    <i class="fas fa-chart-line" title="Analytics"></i>
+                    <span>Analytics</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="#" class="nav-link" data-page="reports" title="Reports">
+                    <i class="fas fa-file-alt" title="Reports"></i>
+                    <span>Reports</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="#" class="nav-link" data-page="settings" title="Settings">
+                    <i class="fas fa-cog" title="Settings"></i>
+                    <span>Settings</span>
+                </a>
+            </div>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="admin-main">
+        <!-- Header -->
+        <header class="admin-header">
+            <div class="header-left">
+                <button class="toggle-sidebar" title="Toggle Sidebar">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="admin-breadcrumb">
+                    <a href="#" title="Admin">Admin</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <span>Dashboard</span>
+                </div>
+            </div>
+            <div class="header-right">
+                <button class="btn btn-outline" title="Notifications">
+                    <i class="fas fa-bell"></i>
+                </button>
+                <div class="user-info">
+                    <div class="user-avatar" title="Admin User">AU</div>
+                    <div class="user-name">Admin User</div>
+                </div>
+                <button class="btn btn-outline" id="logoutBtn" title="Logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Dashboard Content -->
+        <div class="admin-content">
+            <!-- Dashboard Page -->
+            <div class="admin-page active" id="dashboardPage">
+                <div class="admin-content-header">
+                    <h2>Dashboard Overview</h2>
+                    <div class="admin-controls">
+                        <button class="btn btn-outline" title="Export Data">
+                            <i class="fas fa-download"></i> Export
+                        </button>
+                        <button class="btn btn-primary" id="refreshDataBtn" title="Refresh Data">
+                            <i class="fas fa-sync"></i> Refresh
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-card-header">
+                            <h3>Total Products</h3>
+                            <div class="stat-card-icon products">
+                                <i class="fas fa-box" title="Products"></i>
+                            </div>
+                        </div>
+                        <div class="stat-card-value" id="totalProducts">0</div>
+                        <div class="stat-card-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>12% from last month</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-card-header">
+                            <h3>New Orders</h3>
+                            <div class="stat-card-icon orders">
+                                <i class="fas fa-shopping-cart" title="Orders"></i>
+                            </div>
+                        </div>
+                        <div class="stat-card-value" id="totalOrders">0</div>
+                        <div class="stat-card-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>8% from last month</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-card-header">
+                            <h3>Total Users</h3>
+                            <div class="stat-card-icon users">
+                                <i class="fas fa-users" title="Users"></i>
+                            </div>
+                        </div>
+                        <div class="stat-card-value" id="totalUsers">0</div>
+                        <div class="stat-card-change negative">
+                            <i class="fas fa-arrow-down"></i>
+                            <span>2% from last month</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-card-header">
+                            <h3>Total Revenue</h3>
+                            <div class="stat-card-icon revenue">
+                                <i class="fas fa-rupee-sign" title="Revenue"></i>
+                            </div>
+                        </div>
+                        <div class="stat-card-value" id="totalRevenue">₨0.00</div>
+                        <div class="stat-card-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>15% from last month</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts and Activity -->
+                <div class="charts-grid">
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3>Sales Overview</h3>
+                            <div class="chart-controls">
+                                <button class="btn btn-sm btn-outline" title="Month View">Month</button>
+                                <button class="btn btn-sm btn-primary" title="Quarter View">Quarter</button>
+                                <button class="btn btn-sm btn-outline" title="Year View">Year</button>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <div class="chart-placeholder">
+                                <i class="fas fa-chart-bar"></i>
+                                <p>Sales chart visualization would appear here</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="recent-activity">
+                        <h3>Recent Activity</h3>
+                        <ul class="activity-list">
+                            <li class="activity-item">
+                                <div class="activity-icon product">
+                                    <i class="fas fa-box" title="Product"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <h4>New Product Added</h4>
+                                    <p>Organic Plant Food was added to inventory</p>
+                                    <div class="activity-time">2 hours ago</div>
+                                </div>
+                            </li>
+                            <li class="activity-item">
+                                <div class="activity-icon order">
+                                    <i class="fas fa-shopping-cart" title="Order"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <h4>New Order Received</h4>
+                                    <p>Order #1001 from John Doe</p>
+                                    <div class="activity-time">5 hours ago</div>
+                                </div>
+                            </li>
+                            <li class="activity-item">
+                                <div class="activity-icon user">
+                                    <i class="fas fa-user-plus" title="User"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <h4>New User Registered</h4>
+                                    <p>Jane Smith joined the platform</p>
+                                    <div class="activity-time">1 day ago</div>
+                                </div>
+                            </li>
+                            <li class="activity-item">
+                                <div class="activity-icon product">
+                                    <i class="fas fa-box" title="Product"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <h4>Product Updated</h4>
+                                    <p>Nitrogen Boost stock updated</p>
+                                    <div class="activity-time">2 days ago</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Products Page -->
+            <div class="admin-page" id="productsPage">
+                <div class="admin-content-header">
+                    <h2>Product Management</h2>
+                    <div class="admin-controls">
+                        <button class="btn btn-primary" id="addProductBtn" title="Add New Product">
+                            <i class="fas fa-plus"></i> Add New Product
+                        </button>
+                    </div>
+                </div>
+
+                <div class="admin-table-container">
+                    <div class="admin-table-header">
+                        <h3>All Products</h3>
+                        <div class="admin-table-controls">
+                            <input type="text" id="productSearch" placeholder="Search products..." title="Search products">
+                            <select id="productCategoryFilter" title="Filter by category">
+                                <option value="">All Categories</option>
+                                <option value="organic">Organic</option>
+                                <option value="inorganic">Inorganic</option>
+                                <option value="liquid">Liquid</option>
+                                <option value="granular">Granular</option>
+                                <option value="tools">Tools</option>
+                            </select>
+                        </div>
+                    </div>
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Product</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Stock</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminProductsTable">
+                            <!-- Products will be dynamically added here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Orders Page -->
+            <div class="admin-page" id="ordersPage">
+                <div class="admin-content-header">
+                    <h2>Order Management</h2>
+                    <div class="admin-controls">
+                        <button class="btn btn-outline" title="Filter Orders">
+                            <i class="fas fa-filter"></i> Filter
+                        </button>
+                    </div>
+                </div>
+
+                <div class="admin-table-container">
+                    <div class="admin-table-header">
+                        <h3>All Orders</h3>
+                        <div class="admin-table-controls">
+                            <input type="text" id="orderSearch" placeholder="Search orders..." title="Search orders">
+                            <select id="orderStatusFilter" title="Filter by status">
+                                <option value="">All Statuses</option>
+                                <option value="Pending">Pending</option>
+                                <option value="Processing">Processing</option>
+                                <option value="Completed">Completed</option>
+                                <option value="Cancelled">Cancelled</option>
+                            </select>
+                        </div>
+                    </div>
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Customer</th>
+                                <th>Date</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminOrdersTable">
+                            <!-- Orders will be dynamically added here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Users Page -->
+            <div class="admin-page" id="usersPage">
+                <div class="admin-content-header">
+                    <h2>User Management</h2>
+                    <div class="admin-controls">
+                        <button class="btn btn-primary" title="Add User">
+                            <i class="fas fa-user-plus"></i> Add User
+                        </button>
+                    </div>
+                </div>
+
+                <div class="admin-table-container">
+                    <div class="admin-table-header">
+                        <h3>All Users</h3>
+                        <div class="admin-table-controls">
+                            <input type="text" id="userSearch" placeholder="Search users..." title="Search users">
+                            <select id="userTypeFilter" title="Filter by user type">
+                                <option value="">All Types</option>
+                                <option value="client">Client</option>
+                                <option value="admin">Admin</option>
+                            </select>
+                        </div>
+                    </div>
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>User</th>
+                                <th>Email</th>
+                                <th>Type</th>
+                                <th>Registration Date</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminUsersTable">
+                            <!-- Users will be dynamically added here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Analytics Page -->
+            <div class="admin-page" id="analyticsPage">
+                <div class="admin-content-header">
+                    <h2>Business Analytics</h2>
+                    <div class="admin-controls">
+                        <button class="btn btn-outline" title="Select Date Range">
+                            <i class="fas fa-calendar"></i> Date Range
+                        </button>
+                    </div>
+                </div>
+
+                <div class="charts-grid">
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3>Revenue Trends</h3>
+                        </div>
+                        <div class="chart-container">
+                            <div class="chart-placeholder">
+                                <i class="fas fa-chart-line"></i>
+                                <p>Revenue chart visualization would appear here</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3>Top Products</h3>
+                        </div>
+                        <div class="chart-container">
+                            <div class="chart-placeholder">
+                                <i class="fas fa-chart-pie"></i>
+                                <p>Product performance chart would appear here</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-card-header">
+                            <h3>Average Order Value</h3>
+                        </div>
+                        <div class="stat-card-value" id="avgOrderValue">₨0.00</div>
+                        <div class="stat-card-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>5% from last month</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-card-header">
+                            <h3>Conversion Rate</h3>
+                        </div>
+                        <div class="stat-card-value" id="conversionRate">0%</div>
+                        <div class="stat-card-change negative">
+                            <i class="fas fa-arrow-down"></i>
+                            <span>1.2% from last month</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reports Page -->
+            <div class="admin-page" id="reportsPage">
+                <div class="admin-content-header">
+                    <h2>Reports & Analytics</h2>
+                    <div class="admin-controls">
+                        <button class="btn btn-primary" title="Generate Report">
+                            <i class="fas fa-file-export"></i> Generate Report
+                        </button>
+                    </div>
+                </div>
+
+                <div class="admin-form">
+                    <div class="form-header">
+                        <h2>Generate Custom Report</h2>
+                        <p>Create detailed reports based on your specific requirements</p>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="reportType">Report Type</label>
+                            <select id="reportType" title="Select report type">
+                                <option value="">Select Report Type</option>
+                                <option value="sales">Sales Report</option>
+                                <option value="inventory">Inventory Report</option>
+                                <option value="user">User Activity Report</option>
+                                <option value="financial">Financial Summary</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="dateRange">Date Range</label>
+                            <select id="dateRange" title="Select date range">
+                                <option value="">Select Date Range</option>
+                                <option value="today">Today</option>
+                                <option value="week">This Week</option>
+                                <option value="month">This Month</option>
+                                <option value="quarter">This Quarter</option>
+                                <option value="year">This Year</option>
+                                <option value="custom">Custom Range</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="startDate">Start Date</label>
+                            <input type="date" id="startDate" title="Select start date">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="endDate">End Date</label>
+                            <input type="date" id="endDate" title="Select end date">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Include Data</label>
+                        <div class="d-flex" style="gap: 20px; flex-wrap: wrap;">
+                            <label>
+                                <input type="checkbox" checked title="Include sales data"> Sales Data
+                            </label>
+                            <label>
+                                <input type="checkbox" checked title="Include product information"> Product Information
+                            </label>
+                            <label>
+                                <input type="checkbox" title="Include user data"> User Data
+                            </label>
+                            <label>
+                                <input type="checkbox" title="Include financial summary"> Financial Summary
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-primary btn-lg btn-block" id="generateReportBtn" title="Generate Report">
+                        <i class="fas fa-file-download"></i> Generate Report
+                    </button>
+                </div>
+            </div>
+
+            <!-- Settings Page -->
+            <div class="admin-page" id="settingsPage">
+                <div class="admin-content-header">
+                    <h2>System Settings</h2>
+                </div>
+
+                <div class="admin-form">
+                    <div class="form-header">
+                        <h2>General Settings</h2>
+                        <p>Configure your store preferences and settings</p>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="storeName">Store Name</label>
+                            <input type="text" id="storeName" value="GreenGrow Organic Fertilizers" title="Store name">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="storeEmail">Store Email</label>
+                            <input type="email" id="storeEmail" value="admin@greengrow.com" title="Store email">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="storeDescription">Store Description</label>
+                        <textarea id="storeDescription" rows="3" title="Store description">Premium organic fertilizers for healthy plant growth</textarea>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="currency">Currency</label>
+                            <select id="currency" title="Select currency">
+                                <option value="pkr">PKR (₨)</option>
+                                <option value="usd">USD ($)</option>
+                                <option value="eur">EUR (€)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="taxRate">Tax Rate (%)</label>
+                            <input type="number" id="taxRate" value="8" min="0" max="100" title="Tax rate">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Notifications</label>
+                        <div class="d-flex" style="gap: 20px; flex-wrap: wrap;">
+                            <label>
+                                <input type="checkbox" checked title="Enable email notifications"> Email Notifications
+                            </label>
+                            <label>
+                                <input type="checkbox" checked title="Enable order alerts"> Order Alerts
+                            </label>
+                            <label>
+                                <input type="checkbox" title="Enable inventory alerts"> Inventory Alerts
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-primary btn-lg" id="saveSettingsBtn" title="Save Settings">
+                        <i class="fas fa-save"></i> Save Settings
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Admin dashboard functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Page navigation
+            const navLinks = document.querySelectorAll('.nav-link');
+            const pages = document.querySelectorAll('.admin-page');
+            
+            // Get data from parent window if available
+            const parentWindow = window.opener || window.parent;
+            
+            // Initialize dashboard with data
+            initializeDashboard();
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Update active nav link
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Show selected page
+                    const pageId = this.getAttribute('data-page') + 'Page';
+                    pages.forEach(page => {
+                        page.classList.remove('active');
+                        if (page.id === pageId) {
+                            page.classList.add('active');
+                            // Load data for the page
+                            loadPageData(this.getAttribute('data-page'));
+                        }
+                    });
+                    
+                    // Update breadcrumb
+                    document.querySelector('.admin-breadcrumb span').textContent = 
+                        this.querySelector('span').textContent;
+                });
+            });
+            
+            // Toggle sidebar on mobile
+            const toggleBtn = document.querySelector('.toggle-sidebar');
+            const sidebar = document.querySelector('.admin-sidebar');
+            
+            toggleBtn.addEventListener('click', function() {
+                sidebar.classList.toggle('active');
+            });
+            
+            // Close sidebar when clicking outside on mobile
+            document.addEventListener('click', function(e) {
+                if (window.innerWidth <= 768) {
+                    if (!sidebar.contains(e.target) && !toggleBtn.contains(e.target)) {
+                        sidebar.classList.remove('active');
+                    }
+                }
+            });
+            
+            // Handle window resize events
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 768) {
+                    sidebar.classList.remove('active');
+                }
+                
+                // Reinitialize charts and other components on resize
+                initializeDashboard();
+            });
+            
+            // Handle keyboard navigation for accessibility
+            document.addEventListener('keydown', function(e) {
+                // Close sidebar with Escape key
+                if (e.key === 'Escape' && sidebar.classList.contains('active')) {
+                    sidebar.classList.remove('active');
+                }
+                
+                // Toggle sidebar with Ctrl+M (for keyboard users)
+                if (e.ctrlKey && e.key === 'm') {
+                    e.preventDefault();
+                    sidebar.classList.toggle('active');
+                }
+            });
+            
+            // Logout functionality
+            document.getElementById('logoutBtn').addEventListener('click', function() {
+                if (confirm('Are you sure you want to logout?')) {
+                    // In a real application, this would redirect to logout endpoint
+                    window.location.href = '../index.html';
+                }
+            });
+            
+            // Refresh data functionality
+            document.getElementById('refreshDataBtn').addEventListener('click', function() {
+                initializeDashboard();
+                loadPageData(document.querySelector('.nav-link.active').getAttribute('data-page'));
+            });
+            
+            // Generate report functionality
+            document.getElementById('generateReportBtn').addEventListener('click', function() {
+                const reportType = document.getElementById('reportType').value;
+                const dateRange = document.getElementById('dateRange').value;
+                
+                if (!reportType) {
+                    alert('Please select a report type');
+                    return;
+                }
+                
+                alert(`Generating ${reportType} report for ${dateRange || 'all time'}...`);
+            });
+            
+            // Save settings functionality
+            document.getElementById('saveSettingsBtn').addEventListener('click', function() {
+                const storeName = document.getElementById('storeName').value;
+                const storeEmail = document.getElementById('storeEmail').value;
+                const storeDescription = document.getElementById('storeDescription').value;
+                
+                alert(`Settings saved successfully!\nStore: ${storeName}\nEmail: ${storeEmail}`);
+            });
+            
+            // Initialize dashboard with analytics data
+            function initializeDashboard() {
+                // Try to get data from parent window
+                let productsData = [];
+                let ordersData = [];
+                let usersData = [];
+                
+                try {
+                    if (parentWindow && parentWindow.products) {
+                        productsData = parentWindow.products;
+                    }
+                    if (parentWindow && parentWindow.orders) {
+                        ordersData = parentWindow.orders;
+                    }
+                    if (parentWindow && parentWindow.users) {
+                        usersData = parentWindow.users;
+                    }
+                } catch (e) {
+                    // If we can't access parent data, use sample data
+                    productsData = [
+                        { id: 1, name: "Organic Plant Food", category: "organic", price: 2499, stock: 50 },
+                        { id: 2, name: "Nitrogen Boost", category: "inorganic", price: 1999, stock: 75 }
+                    ];
+                    ordersData = [
+                        { id: 1001, customer: "John Doe", date: "2023-06-15", amount: 7497, status: "Completed" },
+                        { id: 1002, customer: "Jane Smith", date: "2023-06-18", amount: 5298, status: "Processing" }
+                    ];
+                    usersData = [
+                        { id: 1, name: "John Doe", email: "john@example.com", type: "client", regDate: "2023-01-15" },
+                        { id: 2, name: "Jane Smith", email: "jane@example.com", type: "client", regDate: "2023-03-22" },
+                        { id: 3, name: "Admin User", email: "admin@greengrow.com", type: "admin", regDate: "2023-01-10" }
+                    ];
+                }
+                
+                // Update dashboard stats
+                document.getElementById('totalProducts').textContent = productsData.length;
+                document.getElementById('totalOrders').textContent = ordersData.length;
+                document.getElementById('totalUsers').textContent = usersData.length;
+                
+                // Calculate total revenue
+                const totalRevenue = ordersData.reduce((sum, order) => sum + order.amount, 0);
+                document.getElementById('totalRevenue').textContent = `₨${(totalRevenue/100).toFixed(2)}`;
+                
+                // Calculate average order value
+                const avgOrderValue = ordersData.length > 0 ? totalRevenue / ordersData.length : 0;
+                document.getElementById('avgOrderValue').textContent = `₨${(avgOrderValue/100).toFixed(2)}`;
+                
+                // Conversion rate (simplified)
+                document.getElementById('conversionRate').textContent = `${Math.min(100, (ordersData.length / usersData.length * 100)).toFixed(1)}%`;
+            }
+            
+            // Load data for specific pages
+            function loadPageData(page) {
+                switch(page) {
+                    case 'products':
+                        loadProducts();
+                        break;
+                    case 'orders':
+                        loadOrders();
+                        break;
+                    case 'users':
+                        loadUsers();
+                        break;
+                    case 'analytics':
+                        updateAnalytics();
+                        break;
+                }
+            }
+            
+            // Load products data
+            function loadProducts() {
+                // Try to get data from parent window
+                let productsData = [];
+                try {
+                    if (parentWindow && parentWindow.products) {
+                        productsData = parentWindow.products;
+                    } else {
+                        // Sample data if parent data is not available
+                        productsData = [
+                            { id: 1, name: "Organic Plant Food", category: "organic", description: "Rich in nutrients for healthy plant growth. Made from natural compost and organic matter.", price: 2499, stock: 50, image: "https://images.unsplash.com/photo-1597038164126-93d5bd8c33bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
+                            { id: 2, name: "Nitrogen Boost", category: "inorganic", description: "High nitrogen formula for leafy growth. Perfect for leafy vegetables and grass.", price: 1999, stock: 75, image: "https://images.unsplash.com/photo-1597038164126-93d5bd8c33bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" }
+                        ];
+                    }
+                } catch (e) {
+                    // Fallback sample data
+                    productsData = [
+                        { id: 1, name: "Organic Plant Food", category: "organic", description: "Rich in nutrients for healthy plant growth. Made from natural compost and organic matter.", price: 2499, stock: 50, image: "https://images.unsplash.com/photo-1597038164126-93d5bd8c33bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
+                        { id: 2, name: "Nitrogen Boost", category: "inorganic", description: "High nitrogen formula for leafy growth. Perfect for leafy vegetables and grass.", price: 1999, stock: 75, image: "https://images.unsplash.com/photo-1597038164126-93d5bd8c33bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" }
+                    ];
+                }
+                
+                const productsTable = document.getElementById('adminProductsTable');
+                if (productsTable) {
+                    productsTable.innerHTML = '';
+                    productsData.forEach(product => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${product.id}</td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div class="activity-icon product mr-2">
+                                        <i class="fas fa-seedling"></i>
+                                    </div>
+                                    <div>${product.name}</div>
+                                </div>
+                            </td>
+                            <td>${product.category}</td>
+                            <td>₨${(product.price/100).toFixed(2)}</td>
+                            <td>${product.stock}</td>
+                            <td><span class="status-badge ${product.stock > 0 ? 'completed' : 'cancelled'}">${product.stock > 0 ? 'In Stock' : 'Out of Stock'}</span></td>
+                            <td class="action-buttons">
+                                <button class="btn btn-sm btn-outline edit-product" data-id="${product.id}" title="Edit Product"><i class="fas fa-edit"></i></button>
+                                <button class="btn btn-sm btn-danger delete-product" data-id="${product.id}" title="Delete Product"><i class="fas fa-trash"></i></button>
+                            </td>
+                        `;
+                        productsTable.appendChild(row);
+                    });
+                    
+                    // Add event listeners for edit and delete buttons
+                    document.querySelectorAll('.edit-product').forEach(button => {
+                        button.addEventListener('click', function() {
+                            const productId = this.getAttribute('data-id');
+                            editProduct(productId);
+                        });
+                    });
+                    
+                    document.querySelectorAll('.delete-product').forEach(button => {
+                        button.addEventListener('click', function() {
+                            const productId = this.getAttribute('data-id');
+                            deleteProduct(productId);
+                        });
+                    });
+                }
+            }
+            
+            // Load orders data
+            function loadOrders() {
+                // Try to get data from parent window
+                let ordersData = [];
+                try {
+                    if (parentWindow && parentWindow.orders) {
+                        ordersData = parentWindow.orders;
+                    } else {
+                        // Sample data if parent data is not available
+                        ordersData = [
+                            { id: 1001, customer: "John Doe", date: "2023-06-15", amount: 7497, status: "Completed" },
+                            { id: 1002, customer: "Jane Smith", date: "2023-06-18", amount: 5298, status: "Processing" }
+                        ];
+                    }
+                } catch (e) {
+                    // Fallback sample data
+                    ordersData = [
+                        { id: 1001, customer: "John Doe", date: "2023-06-15", amount: 7497, status: "Completed" },
+                        { id: 1002, customer: "Jane Smith", date: "2023-06-18", amount: 5298, status: "Processing" }
+                    ];
+                }
+                
+                const ordersTable = document.getElementById('adminOrdersTable');
+                if (ordersTable) {
+                    ordersTable.innerHTML = '';
+                    ordersData.forEach(order => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>#${order.id}</td>
+                            <td>${order.customer}</td>
+                            <td>${order.date}</td>
+                            <td>₨${(order.amount/100).toFixed(2)}</td>
+                            <td><span class="status-badge ${order.status.toLowerCase()}">${order.status}</span></td>
+                            <td class="action-buttons">
+                                <button class="btn btn-sm btn-outline view-order" data-id="${order.id}" title="View Order"><i class="fas fa-eye"></i></button>
+                                <button class="btn btn-sm btn-danger cancel-order" data-id="${order.id}" title="Cancel Order"><i class="fas fa-times"></i></button>
+                            </td>
+                        `;
+                        ordersTable.appendChild(row);
+                    });
+                    
+                    // Add event listeners for view and cancel buttons
+                    document.querySelectorAll('.view-order').forEach(button => {
+                        button.addEventListener('click', function() {
+                            const orderId = this.getAttribute('data-id');
+                            viewOrder(orderId);
+                        });
+                    });
+                    
+                    document.querySelectorAll('.cancel-order').forEach(button => {
+                        button.addEventListener('click', function() {
+                            const orderId = this.getAttribute('data-id');
+                            cancelOrder(orderId);
+                        });
+                    });
+                }
+            }
+            
+            // Load users data
+            function loadUsers() {
+                // Try to get data from parent window
+                let usersData = [];
+                try {
+                    if (parentWindow && parentWindow.users) {
+                        usersData = parentWindow.users;
+                    } else {
+                        // Sample data if parent data is not available
+                        usersData = [
+                            { id: 1, name: "John Doe", email: "john@example.com", type: "client", regDate: "2023-01-15" },
+                            { id: 2, name: "Jane Smith", email: "jane@example.com", type: "client", regDate: "2023-03-22" },
+                            { id: 3, name: "Admin User", email: "admin@greengrow.com", type: "admin", regDate: "2023-01-10" }
+                        ];
+                    }
+                } catch (e) {
+                    // Fallback sample data
+                    usersData = [
+                        { id: 1, name: "John Doe", email: "john@example.com", type: "client", regDate: "2023-01-15" },
+                        { id: 2, name: "Jane Smith", email: "jane@example.com", type: "client", regDate: "2023-03-22" },
+                        { id: 3, name: "Admin User", email: "admin@greengrow.com", type: "admin", regDate: "2023-01-10" }
+                    ];
+                }
+                
+                const usersTable = document.getElementById('adminUsersTable');
+                if (usersTable) {
+                    usersTable.innerHTML = '';
+                    usersData.forEach(user => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${user.id}</td>
+                            <td>${user.name}</td>
+                            <td>${user.email}</td>
+                            <td>${user.type}</td>
+                            <td>${user.regDate}</td>
+                            <td><span class="status-badge completed">Active</span></td>
+                            <td class="action-buttons">
+                                <button class="btn btn-sm btn-outline edit-user" data-id="${user.id}" title="Edit User"><i class="fas fa-edit"></i></button>
+                                <button class="btn btn-sm btn-danger delete-user" data-id="${user.id}" title="Delete User" ${user.type === 'admin' ? 'disabled' : ''}><i class="fas fa-trash"></i></button>
+                            </td>
+                        `;
+                        usersTable.appendChild(row);
+                    });
+                    
+                    // Add event listeners for edit and delete buttons
+                    document.querySelectorAll('.edit-user').forEach(button => {
+                        button.addEventListener('click', function() {
+                            const userId = this.getAttribute('data-id');
+                            editUser(userId);
+                        });
+                    });
+                    
+                    document.querySelectorAll('.delete-user').forEach(button => {
+                        button.addEventListener('click', function() {
+                            const userId = this.getAttribute('data-id');
+                            deleteUser(userId);
+                        });
+                    });
+                }
+            }
+            
+            // Update analytics data
+            function updateAnalytics() {
+                // This function is called when the analytics page is loaded
+                // In a real application, this would fetch specific analytics data
+                console.log('Analytics page loaded');
+            }
+            
+            // Product management functions
+            function editProduct(productId) {
+                alert(`Edit product functionality for product ID ${productId} would be implemented here.`);
+            }
+            
+            function deleteProduct(productId) {
+                if (confirm(`Are you sure you want to delete product ID ${productId}?`)) {
+                    alert(`Delete product functionality for product ID ${productId} would be implemented here.`);
+                }
+            }
+            
+            // Order management functions
+            function viewOrder(orderId) {
+                alert(`View order details functionality for order ID ${orderId} would be implemented here.`);
+            }
+            
+            function cancelOrder(orderId) {
+                if (confirm(`Are you sure you want to cancel order ID ${orderId}?`)) {
+                    alert(`Cancel order functionality for order ID ${orderId} would be implemented here.`);
+                }
+            }
+            
+            // User management functions
+            function editUser(userId) {
+                alert(`Edit user functionality for user ID ${userId} would be implemented here.`);
+            }
+            
+            function deleteUser(userId) {
+                // Check if user is admin
+                let usersData = [];
+                try {
+                    if (parentWindow && parentWindow.users) {
+                        usersData = parentWindow.users;
+                    }
+                } catch (e) {
+                    // Fallback sample data
+                    usersData = [
+                        { id: 1, name: "John Doe", email: "john@example.com", type: "client", regDate: "2023-01-15" },
+                        { id: 2, name: "Jane Smith", email: "jane@example.com", type: "client", regDate: "2023-03-22" },
+                        { id: 3, name: "Admin User", email: "admin@greengrow.com", type: "admin", regDate: "2023-01-10" }
+                    ];
+                }
+                
+                const user = usersData.find(u => u.id == userId);
+                if (user && user.type === 'admin') {
+                    alert('Cannot delete admin users');
+                    return;
+                }
+                
+                if (confirm(`Are you sure you want to delete user ID ${userId}?`)) {
+                    alert(`Delete user functionality for user ID ${userId} would be implemented here.`);
+                }
+            }
+            
+            // Add product button functionality
+            const addProductBtn = document.getElementById('addProductBtn');
+            if (addProductBtn) {
+                addProductBtn.addEventListener('click', function() {
+                    alert('Add product functionality would be implemented here.');
+                });
+            }
+            
+            // Search and filter functionality with debounce
+            document.getElementById('productSearch')?.addEventListener('input', debounce(function() {
+                filterProducts();
+            }, 300));
+            
+            document.getElementById('productCategoryFilter')?.addEventListener('change', function() {
+                filterProducts();
+            });
+            
+            document.getElementById('orderSearch')?.addEventListener('input', debounce(function() {
+                filterOrders();
+            }, 300));
+            
+            document.getElementById('orderStatusFilter')?.addEventListener('change', function() {
+                filterOrders();
+            });
+            
+            document.getElementById('userSearch')?.addEventListener('input', debounce(function() {
+                filterUsers();
+            }, 300));
+            
+            document.getElementById('userTypeFilter')?.addEventListener('change', function() {
+                filterUsers();
+            });
+            
+            // Debounce function to limit how often a function can be called
+            function debounce(func, wait) {
+                let timeout;
+                return function executedFunction(...args) {
+                    const later = () => {
+                        clearTimeout(timeout);
+                        func(...args);
+                    };
+                    clearTimeout(timeout);
+                    timeout = setTimeout(later, wait);
+                };
+            }
+            
+            // Filter functions
+            function filterProducts() {
+                const searchTerm = document.getElementById('productSearch')?.value.toLowerCase() || '';
+                const categoryFilter = document.getElementById('productCategoryFilter')?.value || '';
+                
+                // In a real application, this would filter the actual products table
+                console.log('Filtering products:', { searchTerm, categoryFilter });
+            }
+            
+            function filterOrders() {
+                const searchTerm = document.getElementById('orderSearch')?.value.toLowerCase() || '';
+                const statusFilter = document.getElementById('orderStatusFilter')?.value || '';
+                
+                // In a real application, this would filter the actual orders table
+                console.log('Filtering orders:', { searchTerm, statusFilter });
+            }
+            
+            function filterUsers() {
+                const searchTerm = document.getElementById('userSearch')?.value.toLowerCase() || '';
+                const typeFilter = document.getElementById('userTypeFilter')?.value || '';
+                
+                // In a real application, this would filter the actual users table
+                console.log('Filtering users:', { searchTerm, typeFilter });
+            }
+        });
+    </script>
+</body>
+</html>

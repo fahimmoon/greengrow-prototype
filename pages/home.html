@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenGrow Organic Fertilizers - Home</title>
+</head>
+<body>
+<!-- Hero Section -->
+<section class="hero">
+    <div class="container">
+        <h2>Premium Organic Fertilizers for Healthy Crops</h2>
+        <p>Boost your agricultural productivity with our scientifically formulated organic fertilizers. From small gardens to large farms, we have the right solution for your needs.</p>
+        <button class="btn btn-primary" id="shopNowBtn">Shop Now</button>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="features">
+    <div class="container">
+        <h2 class="section-title">Why Choose GreenGrow?</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <i class="fas fa-seedling feature-icon"></i>
+                <h3>100% Organic Solutions</h3>
+                <p>Eco-friendly fertilizers that promote sustainable farming practices and soil health.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-flask feature-icon"></i>
+                <h3>Scientifically Formulated</h3>
+                <p>Developed by agricultural experts for optimal plant nutrition and growth.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-truck feature-icon"></i>
+                <h3>Fast Delivery</h3>
+                <p>Quick and reliable shipping to your farm or garden anywhere in the country.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-headset feature-icon"></i>
+                <h3>Expert Support</h3>
+                <p>Get personalized advice from our agricultural specialists.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Products Section -->
+<section id="productsSection">
+    <div class="container">
+        <h2 class="section-title">Our Best Sellers</h2>
+        <div class="products-grid" id="productsGrid">
+            <!-- Products will be dynamically added here -->
+        </div>
+        <div class="text-center mt-30">
+            <a href="#" class="btn btn-outline" data-page="products">View All Products</a>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section class="about-preview">
+    <div class="container">
+        <h2 class="section-title">About GreenGrow</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>GreenGrow has been a trusted name in organic agricultural solutions for over 20 years. Our fertilizers are developed by agricultural scientists to ensure optimal plant growth and soil health.</p>
+                <p>We are committed to sustainable farming practices and offer eco-friendly options that minimize environmental impact while maximizing crop yield.</p>
+                <div class="stats">
+                    <div class="stat-item">
+                        <h3>20+</h3>
+                        <p>Years Experience</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>1000+</h3>
+                        <p>Happy Farmers</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>50+</h3>
+                        <p>Products</p>
+                    </div>
+                </div>
+            </div>
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1597038164126-93d5bd8c33bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Farm">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="testimonials">
+    <div class="container">
+        <h2 class="section-title">What Our Customers Say</h2>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-text">
+                    GreenGrow fertilizers have transformed my vegetable garden. My tomatoes have never been more vibrant and productive!
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="author-info">
+                        <h4>John Peterson</h4>
+                        <p>Home Gardener</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-text">
+                    As a commercial farmer, I've seen a 30% increase in yield since switching to GreenGrow products. Highly recommended!
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="author-info">
+                        <h4>Sarah Johnson</h4>
+                        <p>Commercial Farmer</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-text">
+                    The organic options are fantastic. My soil health has improved dramatically, and my plants are thriving.
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="author-info">
+                        <h4>Michael Chen</h4>
+                        <p>Organic Farm Owner</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Newsletter Section -->
+<section class="newsletter">
+    <div class="container">
+        <h2>Subscribe to Our Newsletter</h2>
+        <p>Stay updated with our latest products, gardening tips, and special offers.</p>
+        <form class="newsletter-form">
+            <input type="email" placeholder="Enter your email" required>
+            <button type="submit">Subscribe</button>
+        </form>
+    </div>
+</section>
+
+<script>
+// Add event listener for Shop Now button
+document.addEventListener('DOMContentLoaded', function() {
+    const shopNowBtn = document.getElementById('shopNowBtn');
+    if (shopNowBtn) {
+        shopNowBtn.addEventListener('click', function() {
+            // Find the Products link in the navigation and click it
+            const productsLink = document.querySelector('a[data-page="products"]');
+            if (productsLink) {
+                productsLink.click();
+            }
+        });
+    }
+});
+</script>
+</body>
+</html>
